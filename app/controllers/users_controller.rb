@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :correct_user, only: [:edit, :update]
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+  before_action :logged_in_user, only: [:index, :edit, :update,
                                         :following, :followers]
 
   def new
@@ -9,8 +9,12 @@ class UsersController < ApplicationController
   end
 
   def show
+
     @user = User.find(params[:id])
     @entries = @user.entries.paginate(page: params[:page])
+    @entry = @user.entries.build
+    @comments = @entry.comments.paginate(page: params[:page])
+
   end
 
   def create

@@ -1,4 +1,4 @@
-<li id="entry-<%= entry.id %>">
+<li id="entry-<%= entry.id%>">
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
   <span class="user"><%= link_to entry.user.name, entry.user %></span>
 
@@ -13,6 +13,17 @@
       <%= link_to "Delete", entry, method: :delete, data: {confirm: "Are You sure?"} %>
     <% end %>
   </span>
-  <div class="field"><%= text_field :test, placeholder: "make a comment..."  %></div>
+  <% if entry.comments.any? %>
+    <h3><%= pluralize(entry.comments.count, "comment")%></h3>
+    <ol class="comments">
+      <%= render entry.comments %>
+    </ol>
+  <% end %>
+  <section class="comment_form">
+    <%= render 'shared/comment_form', entry: entry %>
+  </section>
+
+
 </li>
+
 
