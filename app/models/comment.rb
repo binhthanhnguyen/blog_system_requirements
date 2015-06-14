@@ -1,0 +1,11 @@
+class Comment < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :entry
+  default_scope -> {order(created_at: :asc)}
+  validates :user_id, presence: true
+  validates :entry_id, presence: true
+  validates :content, length: {maximum: 140}
+
+
+end
+
