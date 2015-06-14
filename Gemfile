@@ -41,6 +41,10 @@ gem 'fog',                     '1.30.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Pagination
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -53,9 +57,6 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '1.3.10'
 
-  # Pagination
-  gem 'will_paginate',           '3.0.7'
-  gem 'bootstrap-will_paginate', '0.0.10'
 
 end
 group :production do
