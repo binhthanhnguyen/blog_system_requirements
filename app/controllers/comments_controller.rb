@@ -5,19 +5,28 @@ class CommentsController < ApplicationController
     @entry = Entry.find params[:entry_id]
     @comment = current_user.comments.build(comment_params)
     @comment.entry = @entry
-    
-    if @comment.save
-      flash[:success] = "Comment created!"
-      redirect_to request.referrer
-    else
-      render 'static_pages/home'
+    # if @comment.save
+    #   flash[:success] = "Comment created!"
+    #   redirect_to request.referrer
+    # else
+    #   render 'static_pages/home'
+    # end
+    @comment.save
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.js
     end
   end
 
   def destroy
+    @entry = @comment.entry
     @comment.destroy
-    flash[:success] = "Comment deleted"
-    redirect_to request.referrer || root_url
+    # flash[:success] = "Comment deleted"
+    # redirect_to request.referrer || root_url
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.js
+    end
   end
 
 
